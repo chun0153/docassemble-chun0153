@@ -1,0 +1,13 @@
+---
+# My first Docassemble program
+mandatory: True
+question: Hello World!
+subquestion: |
+  Hello **${ Cname }**
+  
+  Welcome to Docassemble!
+---
+question: Name
+fields:
+  - What is your name?: Cname
+---

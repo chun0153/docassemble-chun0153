@@ -1,0 +1,50 @@
+---
+# My first Docassemble program
+mandatory: True
+question: Hello World!
+subquestion: |
+  ### Welcome to my first ever Docassemble interview
+  
+  Dear ${ Csalutation + ' ' + Clastname },
+
+  This is a quick introduction to Markdown.
+
+  Two lines for a line break
+  because a single line doesn't break at all.
+
+  - Here's a list
+  - with some items
+  - in it
+
+  **Here's some bold text** and *text in italics*.
+
+  Item|Details
+  -------|-------
+  Name|${ Csalutation + ' ' + Cfirstname + ' ' + Clastname }
+  Age|${ age }
+buttons:
+  - I'm done: exit
+    url: https://flinders.edu.au
+  - Do it again: restart
+---
+question: Salutation
+fields:
+  - Salutation: Csalutation
+    choices:
+      - Dr
+      - Mr
+      - Mrs
+      - Ms
+      - Miss
+---
+question: Name
+subquestion: |
+  Please enter your name
+fields:
+  - First Name: Cfirstname
+  - Last Name: Clastname
+---
+question: Age
+fields:
+ - How old are you?: age 
+---

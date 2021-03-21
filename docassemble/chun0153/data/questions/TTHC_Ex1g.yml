@@ -1,0 +1,60 @@
+---
+# A program to identify a person is a child or an adult
+mandatory: True
+question: Hello World!
+subquestion: |
+  Hello **${ Cname }**.
+  
+  %if Cpartner == 'Yes':
+  Your partner's name is **${ CpartnerName }**  
+  Your annual income is ${ currency(annualIncome, symbol=u'$') } and ${ CpartnerName }'s annual income is ${ currency(CpartnerIncome, symbol=u'$') }    
+  Your total household income is ${ currency(annualIncome + CpartnerIncome, symbol=u'$') }    
+  Your average household income is ${ currency((annualIncome + CpartnerIncome)/2, symbol=u'$') }
+  %else:
+  Your total household income is ${ currency(annualIncome, symbol=u'$') }    
+  Your average household income is ${ currency(annualIncome, symbol=u'$') }
+  %endif
+buttons:
+  - Exit: exit
+  - Restart: restart
+---
+question: Name
+subquestion: |
+  Please enter your full name, including you middle name if you have one
+fields:
+  - no label: Cname
+---
+question: Age
+fields:
+ - How old are you?: age 
+   datatype: integer
+---
+auto terms:
+  annual income: |
+    Annual income is the total value of income earned during a Fiscal Year (FY).
+    A fiscal year (FY) is a 12-month or 52-week period of time used by governments
+    and businesses for accounting purposes to formulate annual.
+question: Annual Income
+fields:
+ - How much you earn per year?: annualIncome 
+   datatype: currency
+   min: 0
+   currency symbol: $
+---
+question: Partner Status
+fields:
+  - Do you have a partner?: Cpartner
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - What is your partner's name?: CpartnerName
+    show if: 
+      variable: Cpartner
+      is: 'Yes'
+  - What is your partner's annual income?: CpartnerIncome
+    datatype: currency
+    show if: 
+      variable: Cpartner
+      is: 'Yes'
+---

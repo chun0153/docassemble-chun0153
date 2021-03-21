@@ -1,0 +1,9 @@
+---
+# My first Docassemble program
+mandatory: True
+question: Hello World!
+subquestion: |
+  Hello Hang,
+  
+  Welcome to Docassemble!
+---

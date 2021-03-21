@@ -1,0 +1,45 @@
+---
+# A program to identify a person is a child or an adult
+mandatory: True
+question: Hello World!
+subquestion: |
+  Hello **${ Cname }**,
+  %if age < 18:
+  you are just a child
+  %elif age >= 65:
+  you are an adult and are eligible for the age pension
+  %else:
+  you are an adult
+  %endif
+  %if annualIncome != 0:
+  and your annual income is ${ currency(annualIncome, symbol=u'$') }.
+  %else:
+  and you do not earn an income.
+  %endif
+buttons:
+  - Exit: exit
+  - Restart: restart
+---
+question: Name
+subquestion: |
+  Please enter your full name, including you middle name if you have one
+fields:
+  - no label: Cname
+---
+question: Age
+fields:
+ - How old are you?: age 
+   datatype: integer
+---
+auto terms:
+  annual income: |
+    Annual income is the total value of income earned during a Fiscal Year (FY).
+    A fiscal year (FY) is a 12-month or 52-week period of time used by governments
+    and businesses for accounting purposes to formulate annual.
+question: Annual Income
+fields:
+ - How much is your annual income?: annualIncome 
+   datatype: currency
+   min: 0
+   currency symbol: $
+---
