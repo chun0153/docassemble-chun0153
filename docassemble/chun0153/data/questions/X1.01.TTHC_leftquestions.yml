@@ -1,0 +1,71 @@
+# NOTE:  This file should not contain any mandatory
+# question blocks
+---
+# Asks the initial question
+# We populate TTHCsue_reason with 'TTHCpromisee' or 'TTHCpromisor'.
+# These strings are easier work with than the long-form answer
+# we display to the user.
+# Ref: https://docassemble.org/docs/fields.html#radio
+#
+question: Why do you want to sue?
+fields:
+  - no label: TTHCsue_reason
+    datatype: radio
+    choices:
+      - I paid for work that wasn't done: TTHCpromisee
+      - Somebody didn't pay me for work that I did: TTHCpromisor
+---
+# Test for Offer and Acceptance
+# This code is going to ask two questions to make sure that
+question: Did the other person agree to pay you for doing this work?
+fields:
+  - no label: TTHCcertainty
+    datatype: radio
+    choices:
+      - Yes. The other person agreed to pay me for doing exactly this work: TTHCagree_exact
+      - Yes. The other person agreed to pay me for doing some of this work but there was other work that was not agreed to that wasn't done: TTHCagree_inexact
+      - No. The other person did not agree to pay me for doing this work or all of this work: TTHCdisagree
+---
+# Test for Consideration (and Certainty)
+question: Payment for the Work
+subquestion: |
+  Did you and the other person agree how much you would pay for the work?
+fields:
+  - no label: TTHCconsideration
+    datatype: radio
+    choices:
+      - Yes, we agreed to pay for the work: True
+      - No, we never reached a firm agreement on how much I should be paid: False
+  - How much did you agree to be paid for this work?: TTHCpayment_agreed
+    datatype: currency
+    min: 0
+    show if: 
+      variable: TTHCconsideration
+      is: True
+---
+# Just to mix things up, we use a 'yesno' field to ask whether the other person
+# had capacity.  We are reducing 'capacity' in this app to just being an adult.
+# For the purposes of this app it's too complex to get into actual mental capacity.
+question: Who did you contract with?
+subquestion: |
+  Was the other person an adult?
+yesno: TTHCcapacity
+---
+# Question to ask if there is a written contract
+question: Written Contract
+subquestion: |
+  A 'written contract' can mean a formal contract document.
+  It can also mean any emails, texts or messages you send
+  or receive about the contract.
+  If your
+  messages contain information about:
+
+  - what work was meant to be done
+  - how much was going to be paid for that work
+  - who was going to do the work and who was going to pay
+
+  Then those messages may be enough to be a 'written contract'.
+fields:
+  - Do you or the other person have a 'written contract'?: TTHCwritten_contract
+    datatype: yesnoradio
+---

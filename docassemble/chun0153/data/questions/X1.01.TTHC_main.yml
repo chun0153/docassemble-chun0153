@@ -1,0 +1,48 @@
+---
+include:
+  - X1.01.TTHC_leftquestions.yml
+  - X1.01.TTHC_endpoints.yml
+---
+# Welcome Screen
+mandatory: True
+question: Breach of Contract App
+subquestion: |
+  Welcome to Breach of Contract App. This app is used to record for the reason and
+  details of issues reported by employees. 
+  
+  ***Disclaimer:***  
+  **Should the information contained on the app is for general information purposes only and that this app does not give legal advise.**
+
+  If you continue you accept these terms.
+buttons:
+  - I agree and wish to continue: continue
+  - I do not agree and wish to exit: exit
+---
+# This code block controls the execution of the app.
+mandatory: True
+code: |
+  # Ask the initial questions
+  TTHCsue_reason
+  # We need to split off here depending on what the user
+  # answered
+  if TTHCsue_reason == 'TTHCpromisor':
+    # Students will need to put logic in here
+    # for the promisor part of the code
+    
+    if TTHCcertainty == 'TTHCagree_exact' and TTHCconsideration == True and TTHCcapacity == True:
+      TTHCcontract_exists = True
+    else:
+      TTHCcontract_exists = False
+
+    # Now we know whether there is a contract or not we can display
+    # the final screen that contains a result and an explanation of why
+    endpoints['final_screen']
+    
+  elif TTHCsue_reason == 'TTHCpromisee':
+    # This is right side of the flowchart.  Off we go!
+    pass
+
+  else:
+    error_message = 'Unknown value in TTHCsue_reason: {}'.format(TTHCsue_reason)
+    endpoints['error_screen']
+---
