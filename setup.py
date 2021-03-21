@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.chun0153',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# docassemble.chun0153\n\nA docassemble extension.\n\n## Author\n\nThi Thu Hang Chung, chun0153@flinders.edu.au\n\n',
+      long_description='# docassemble.chun0153\r\n\r\nA docassemble extension.\r\n\r\n## Author\r\n\r\nThi Thu Hang Chung, chun0153@flinders.edu.au\r\n\r\n',
       long_description_content_type='text/markdown',
       author='Thi Thu Hang Chung',
       author_email='chun0153@flinders.edu.au',
